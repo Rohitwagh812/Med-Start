@@ -72,7 +72,7 @@ function Hopitals() {
                   </Card.Text>
                   <hr />
                   <Card.Text>
-                    Hospital Website :&nbsp;&nbsp;{url}
+                    Hospital Website :&nbsp;&nbsp;<Card.Link href='https://www.openstreetmap.org/copyright'>{url}</Card.Link>
                   </Card.Text>
                   <Card.Text>hospital Email : &nbsp;&nbsp; <Card.Link href='https://mail.google.com/mail/u/0/#inbox?compose=new'>{email}</Card.Link></Card.Text>
                   <Card.Text>State : &nbsp;&nbsp;{state}</Card.Text>
