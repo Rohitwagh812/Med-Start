@@ -50,3 +50,7 @@ hr{
 dl, ol, ul {
     margin-bottom: 0 !important;
 }
+
+.css-1rcbby2::before {
+    content: none !important;
+}
