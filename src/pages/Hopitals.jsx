@@ -36,7 +36,15 @@ function Hopitals() {
     }
   }, [latLng1]);
 
-  const uniqueId = Math.floor(Math.random(0) * 40)
+  const distance = userdata.map((data)=>{
+    return data.properties.distance /1000
+  }
+  )
+
+  const duration = userdata.map((data)=>{
+    return data.properties.time /120
+  }
+  )
 
   return ( 
     <div style={{padding:30}}>
@@ -92,7 +100,7 @@ function Hopitals() {
                           <TimelineConnector />
                         </TimelineSeparator>
                         <TimelineContent>
-                            <Card.Text>Your location to your destination Distance In Kilometens = {uniqueId} </Card.Text>
+                            <Card.Text>Your location to your destination Distance In Km = {distance} </Card.Text>
                         </TimelineContent>
                       </TimelineItem>
                       <TimelineItem>
@@ -101,7 +109,7 @@ function Hopitals() {
                           <TimelineConnector />
                         </TimelineSeparator>
                         <TimelineContent>
-                                  <Card.Text>Your Total Traveling Time In A Hrs = 1 </Card.Text>
+                                  <Card.Text>Your Total Traveling Time In A Hrs = {duration} </Card.Text>
                         </TimelineContent> 
                       </TimelineItem>
                       <TimelineItem>
