@@ -30,9 +30,10 @@ function Home() {
   useEffect(() => {
     console.log(latLng.lng);
     if (Object.keys(latLng).length > 0) {
-      const APPI = `https://api.geoapify.com/v2/places?categories=healthcare.hospital&filter=rect:${latLng.lng},${latLng.lat},73.121937,18.9966839&limit=20&apiKey=d301fcb49c754402a35e0abfe42590fb
+      // const APPI = `https://api.geoapify.com/v2/places?categories=healthcare.hospital&filter=rect:${latLng.lng},${latLng.lat},${latLng.lng},${latLng.lat}&limit=20&apiKey=d301fcb49c754402a35e0abfe42590fb
+      // `
+      const APPI = `https://api.geoapify.com/v2/places?categories=healthcare.hospital&filter=circle:${latLng.lng},${latLng.lat},500&bias=proximity:${latLng.lng},${latLng.lat}&limit=20&apiKey=d301fcb49c754402a35e0abfe42590fb
       `
-
       axios.get(APPI).then((res) => {
         console.log(res.data.features);
         setDoctor(res.data.features)
