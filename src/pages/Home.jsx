@@ -6,14 +6,14 @@ import { useNavigate } from 'react-router-dom'
 
 
 
-const APPI = `https://api.geoapify.com/v2/places?categories=healthcare.hospital&filter=circle:74.991796,20.6040452,30000&bias=proximity:74.991796,20.6040452&limit=20&apiKey=d301fcb49c754402a35e0abfe42590fb
+const APPI = `https://api.geoapify.com/v2/places?categories=healthcare.hospital&filter=circle:74.991796,20.6040452,5000&bias=proximity:74.991796,20.6040452&limit=20&apiKey=d301fcb49c754402a35e0abfe42590fb
 `
 
 
 function Home() {
   const navigate = useNavigate()
   const [doctors , setDoctor] = useState([])
-  const [latLng , setLatLng] = useState({})
+  const [latLng , setLatLng] = useState({})     
   
 
   useEffect(() => {
