@@ -37,7 +37,7 @@ hr{
     -webkit-flex: 0 !important;
     -ms-flex: 0 !important;
     flex: 1;
-    padding: 6px 16px;
+    padding: 6px 16px; 
 }
 
 .css-v6mo1y-MuiTimelineDot-root {

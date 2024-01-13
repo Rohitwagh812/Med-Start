@@ -9,6 +9,7 @@ import TimelineSeparator from '@mui/lab/TimelineSeparator';
 import TimelineConnector from '@mui/lab/TimelineConnector';
 import TimelineContent from '@mui/lab/TimelineContent';
 import TimelineDot from '@mui/lab/TimelineDot';
+import { color } from '@mui/system';
 
 
 function Hopitals() {
@@ -16,6 +17,10 @@ function Hopitals() {
   const {address_line2 , latLng1 , url , name , lon , lat , email , state , city } =  location.state;
   const [maps ,setMaps] = useState([])
   const [userdata , setUserdata] = useState([])
+  const [emailTwo , setEmailTwo] = useState([])
+  const [color , setColor] = useState('')
+  const [mail , setMail] =useState('')
+  const [cursor , setCursor] = useState('pointer')
   
   useEffect(() => {
     // console.log(latLng1.lng);
@@ -43,36 +48,35 @@ function Hopitals() {
   )
 
   const duration = userdata.map((data)=>{
-    return data.properties.time /3600
+    return data.properties.time /360
   }
   )
 
-  const originalValue = duration;
-
-// 1. Convert to hours, minutes, and seconds
+const originalValue = duration;
 const hours = Math.floor(originalValue);
 const minutesDecimal = (originalValue - hours) * 100;
 const minutes = Math.floor(minutesDecimal);
 const seconds = Math.round((minutesDecimal - minutes) * 100);
-
-// 2. Express in metric time units
-// const metricTime = {
-//  hours, minutes,seconds,
-// }; 
-
 const metricTime = ['H : ' + hours + ',  M : ' + minutes + ',  S : ' + seconds];
-
-console.log(metricTime);
-
 const distanceInMeters = distance;
-
-// Conversion factor
 const metersToKilometers = 0.001;
-
-// Convert to kilometers
 const distanceInKilometers = distanceInMeters * metersToKilometers;
 
-console.log(`Distance in kilometers: ${distanceInKilometers} km`);
+useEffect((email)=>{
+
+const emailId  = email;
+  console.log(emailId);
+  if (emailId === undefined) {
+    setEmailTwo('Hospital Email Not Available');
+    setColor('black');
+    setCursor('default')
+  } else {
+    setEmailTwo(emailId);
+    setMail('https://mail.google.com/mail/u/0/#inbox?compose=new')
+  }
+},[])
+
+console.log(emailTwo)
 
   return ( 
     <div style={{padding:30}}>
@@ -110,7 +114,7 @@ console.log(`Distance in kilometers: ${distanceInKilometers} km`);
                   <Card.Text>
                     Hospital Website :&nbsp;&nbsp;<Card.Link href='https://www.openstreetmap.org/copyright'>{url}</Card.Link>
                   </Card.Text>
-                  <Card.Text>hospital Email : &nbsp;&nbsp; <Card.Link href='https://mail.google.com/mail/u/0/#inbox?compose=new'>{email}</Card.Link></Card.Text>
+                  <Card.Text>Hospital Email :  <Card.Link style={{color:color ,textDecoration:"none" , cursor:cursor }}  href={mail}>{emailTwo}</Card.Link></Card.Text>
                   <Card.Text>State : &nbsp;&nbsp;{state}</Card.Text>
                   <Card.Text>City : &nbsp;&nbsp;{city}</Card.Text>
                 </Card.Body>              
