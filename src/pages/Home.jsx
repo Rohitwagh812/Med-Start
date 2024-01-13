@@ -51,7 +51,8 @@ function Home() {
         doctors.map((doctor, index)=>{
           return (
             <div style={{padding:11}} key={index}>
-              <Card onClick={()=>navigate('/hospital/' , {state: { address_line2 : doctor.properties.address_line2 , latLng1 : latLng , lat : doctor.properties.lat , url : doctor.properties.datasource.url, email : doctor.properties.datasource.raw.email , name : doctor.properties.name , lon :  doctor.properties.lon , state : doctor.properties.state , city : doctor.properties.city } })} style={{height:'12rem', width:"19rem", overflow:'hidden', cursor:"pointer"}}>
+              <Card onClick={()=>navigate('/hospital/' , {state: { address_line2 : doctor.properties.formatted
+ , latLng1 : latLng , lat : doctor.properties.lat , url : doctor.properties.datasource.url, email : doctor.properties.datasource.raw.email , name : doctor.properties.name , lon :  doctor.properties.lon , state : doctor.properties.state , city : doctor.properties.city } })} style={{height:'12rem', width:"19rem", overflow:'hidden', cursor:"pointer"}}>
                 <Card.Body>
                     <Card.Title  style={{borderBottom:'1px solid black', fontWeight:"bold"}}>
                       {doctor.properties.datasource.raw.name}

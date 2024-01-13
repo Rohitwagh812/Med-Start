@@ -19,6 +19,7 @@ function Hopitals() {
   
   useEffect(() => {
     console.log(latLng1.lng);
+    console.log(latLng1.lat);
     if (Object.keys(latLng1).length > 0) {
       const APPI = `https://api.geoapify.com/v1/geocode/reverse?lat=${latLng1.lat}&lon=${latLng1.lng}&format=json&apiKey=d301fcb49c754402a35e0abfe42590fb
       ` 
@@ -37,14 +38,41 @@ function Hopitals() {
   }, [latLng1]);
 
   const distance = userdata.map((data)=>{
-    return data.properties.distance /1000
+    return data.properties.distance 
   }
   )
 
   const duration = userdata.map((data)=>{
-    return data.properties.time /120
+    return data.properties.time /3600
   }
   )
+
+  const originalValue = duration;
+
+// 1. Convert to hours, minutes, and seconds
+const hours = Math.floor(originalValue);
+const minutesDecimal = (originalValue - hours) * 100;
+const minutes = Math.floor(minutesDecimal);
+const seconds = Math.round((minutesDecimal - minutes) * 100);
+
+// 2. Express in metric time units
+// const metricTime = {
+//  hours, minutes,seconds,
+// }; 
+
+const metricTime = ['H : ' + hours + ',  M : ' + minutes + ',  S : ' + seconds];
+
+console.log(metricTime);
+
+const distanceInMeters = 771;
+
+// Conversion factor
+const metersToKilometers = 0.001;
+
+// Convert to kilometers
+const distanceInKilometers = distanceInMeters * metersToKilometers;
+
+console.log(`Distance in kilometers: ${distanceInKilometers} km`);
 
   return ( 
     <div style={{padding:30}}>
@@ -100,7 +128,7 @@ function Hopitals() {
                           <TimelineConnector />
                         </TimelineSeparator>
                         <TimelineContent>
-                            <Card.Text>Your location to your destination Distance In Km = {distance} </Card.Text>
+                            <Card.Text>Your location to your destination Distance ={distanceInKilometers} Km </Card.Text>
                         </TimelineContent>
                       </TimelineItem>
                       <TimelineItem>
@@ -109,7 +137,7 @@ function Hopitals() {
                           <TimelineConnector />
                         </TimelineSeparator>
                         <TimelineContent>
-                                  <Card.Text>Your Total Traveling Time In A Hrs = {duration} </Card.Text>
+                                  <Card.Text>Your Total Traveling Time  = {metricTime} </Card.Text>
                         </TimelineContent> 
                       </TimelineItem>
                       <TimelineItem>
