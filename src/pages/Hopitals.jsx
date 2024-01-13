@@ -21,7 +21,8 @@ function Hopitals() {
   const [color , setColor] = useState('')
   const [mail , setMail] =useState('')
   const [cursor , setCursor] = useState('pointer')
-  
+  const [display , setDisplay] = useState('flex')
+   
   useEffect(() => {
     // console.log(latLng1.lng);
     // console.log(latLng1.lat);
@@ -79,8 +80,6 @@ const emailId  = email;
   }
 },[])
 
-console.log(emailTwo)
-
   return ( 
     <div style={{padding:30}}>
        <Container>
@@ -124,7 +123,7 @@ console.log(emailTwo)
             </Card>
           </Col>
           <Col>
-            <Card>
+            <Card  style={{overflow:"hidden"}}>
               <Card.Body>
                 <Card.Title style={{ fontWeight:"bold", textAlign:'center'}}> * Directoin To Hospital * </Card.Title>
                  <hr />
@@ -147,43 +146,25 @@ console.log(emailTwo)
                                   <Card.Text>Your Total Traveling Time  = {metricTime} </Card.Text>
                         </TimelineContent> 
                       </TimelineItem>
-                      <TimelineItem>
-                        <TimelineSeparator>
-                          <TimelineDot />
-                        </TimelineSeparator>
-                        
-                        <TimelineContent>
+                      
                           {
                               userdata.map((data, index) => (
                                   <div key={index}>
                                     {data.properties.legs[0].steps?.map((step, stepIndex) => (
-                                        <TimelineContent key={stepIndex}>
+                                      <TimelineItem key={stepIndex}>
+                                      <TimelineSeparator>
+                                        <TimelineDot />
+                                      </TimelineSeparator>
+                                      <TimelineContent>
+                                        <TimelineContent>
                                             {step.instruction.text}
                                         </TimelineContent>
+                                        </TimelineContent>
+                                       </TimelineItem>
                                     ))}
                                   </div>
-                                    ))}</TimelineContent>
-                         </TimelineItem>
-                      <TimelineItem>
-                        <TimelineSeparator>
-                          <TimelineDot />
-                        </TimelineSeparator>
-                        <TimelineContent>Enter Bilal Chowrangi and take the 4th Main Korangi exit onto Road</TimelineContent>
-                      </TimelineItem>
-                      <TimelineItem>
-                        <TimelineSeparator>
-                          <TimelineDot />
-                        </TimelineSeparator>
-                        <TimelineContent>Enter Vita Chowrangi and take the 3rd exit Main Korangi</TimelineContent>
-                      </TimelineItem>
-                      <TimelineItem>
-                        <TimelineSeparator>
-                          <TimelineDot />
-                        </TimelineSeparator>
-                        <TimelineContent>Now your destination is here please give feedback ok thanks</TimelineContent>
-                      </TimelineItem>
+                                    ))}
                     </Timeline>
-                 <Card.Text></Card.Text>
               </Card.Body>
             </Card>
           </Col>
