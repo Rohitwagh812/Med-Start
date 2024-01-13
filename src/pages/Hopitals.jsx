@@ -48,7 +48,7 @@ function Hopitals() {
   )
 
   const duration = userdata.map((data)=>{
-    return data.properties.time /360
+    return data.properties.time /3600
   }
   )
 
