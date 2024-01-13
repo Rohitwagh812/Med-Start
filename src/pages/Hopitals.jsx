@@ -18,8 +18,8 @@ function Hopitals() {
   const [userdata , setUserdata] = useState([])
   
   useEffect(() => {
-    console.log(latLng1.lng);
-    console.log(latLng1.lat);
+    // console.log(latLng1.lng);
+    // console.log(latLng1.lat);
     if (Object.keys(latLng1).length > 0) {
       const APPI = `https://api.geoapify.com/v1/geocode/reverse?lat=${latLng1.lat}&lon=${latLng1.lng}&format=json&apiKey=d301fcb49c754402a35e0abfe42590fb
       ` 
@@ -64,7 +64,7 @@ const metricTime = ['H : ' + hours + ',  M : ' + minutes + ',  S : ' + seconds];
 
 console.log(metricTime);
 
-const distanceInMeters = 771;
+const distanceInMeters = distance;
 
 // Conversion factor
 const metersToKilometers = 0.001;
