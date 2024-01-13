@@ -48,6 +48,9 @@ function Hopitals() {
   )
 
   const duration = userdata.map((data)=>{
+    data.properties.legs[0].steps?.forEach((step) => {
+      console.log(step.instruction.text);
+    });
     return data.properties.time /3600
   }
   )
@@ -148,8 +151,19 @@ console.log(emailTwo)
                         <TimelineSeparator>
                           <TimelineDot />
                         </TimelineSeparator>
-                        <TimelineContent>Enter Singer Chowrangi and take the 2nd Main Korangi Road exit onto Main </TimelineContent>
-                      </TimelineItem>
+                        
+                        <TimelineContent>
+                          {
+                              userdata.map((data, index) => (
+                                  <div key={index}>
+                                    {data.properties.legs[0].steps?.map((step, stepIndex) => (
+                                        <TimelineContent key={stepIndex}>
+                                            {step.instruction.text}
+                                        </TimelineContent>
+                                    ))}
+                                  </div>
+                                    ))}</TimelineContent>
+                         </TimelineItem>
                       <TimelineItem>
                         <TimelineSeparator>
                           <TimelineDot />
